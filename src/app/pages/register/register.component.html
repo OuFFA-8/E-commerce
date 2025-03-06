@@ -1,0 +1,165 @@
+<section>
+    <div class="flex justify-center items-center bg-white p-6">
+        <div class="bg-gray-100 p-8 rounded-lg shadow-lg w-full max-w-3xl">
+            <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">Create an Account</h2>
+            <form [formGroup]="registerForm" (ngSubmit)="submitForm()" class="max-w-md mx-auto ">
+                <div class="relative z-0 w-full mb-5 group ">
+                    <input formControlName="name" type="text" id="floating_Name"
+                        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-green-600 dark:focus:border-green-600 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+                        placeholder=" " required />
+                    <label for="floating_Name"
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-600 peer-focus:dark:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name
+                    </label>
+                    @if ( registerForm.get('name')?.errors && registerForm.get('name')?.touched ){
+                    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <span class="sr-only">Danger</span>
+                        <div>
+                            <span class="font-medium">Ensure that these requirements are met:</span>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                @if ( registerForm.get('name')?.getError("required") ){
+                                <li>Name is required.</li>
+                                }
+                                @else if (registerForm.get('name')?.getError("minlength")) {
+                                <li> Name must be at least 3 characters long.</li>
+                                }
+                                @else if (registerForm.get('name')?.getError("maxlength")) {
+                                <li>Name must not exceed 20 characters.</li> }
+                            </ul>
+                        </div>
+                    </div>
+                    }
+                </div>
+                <div class="relative z-0 w-full mb-5 group">
+                    <input formControlName="email" type="email" name="floating_email" id="floating_email"
+                        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-green-600 dark:focus:border-green-600 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+                        placeholder=" " required />
+                    <label for="floating_email"
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-600 peer-focus:dark:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email
+                        address</label>
+                    @if ( registerForm.get('email')?.errors && registerForm.get('email')?.touched ){
+                    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <span class="sr-only">Danger</span>
+                        <div>
+                            <span class="font-medium">Ensure that these requirements are met:</span>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                @if ( registerForm.get('email')?.getError("required") ){
+                                <li>email is required.</li>
+                                }
+                                @else if (registerForm.get('email')?.getError("email")) {
+                                <li> Enter a valid email address.</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    }
+                </div>
+                <div class="relative z-0 w-full mb-5 group">
+                    <input formControlName="password" type="password" id="floating_password"
+                        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-green-600 dark:focus:border-green-600 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+                        placeholder=" " required />
+                    <label for="floating_password"
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-600 peer-focus:dark:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">password
+                    </label>
+                    @if ( registerForm.get('password')?.errors && registerForm.get('password')?.touched ){
+                    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <span class="sr-only">Danger</span>
+                        <div>
+                            <span class="font-medium">Ensure that these requirements are met:</span>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                @if ( registerForm.get('password')?.getError("required") ){
+                                <li>password is required.</li>
+                                }
+                                @else if (registerForm.get('password')?.getError("pattern")) {
+                                <li>Password must be at least 6 characters long.</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    }
+                </div>
+                <div class="relative z-0 w-full mb-5 group">
+                    <input formControlName="rePassword" type="password" id="floating_repassword"
+                        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-green-600 dark:focus:border-green-600 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+                        placeholder=" " required />
+                    <label for="floating_repassword"
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-600 peer-focus:dark:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm
+                        password
+                    </label>
+                    @if ( registerForm.getError("mismatch") && registerForm.get('rePassword')?.touched ){
+                    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <span class="sr-only">Danger</span>
+                        <div>
+                            <span class="font-medium">Ensure that these requirements are met:</span>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                <li>Password confirmation is incorrect</li>
+                            </ul>
+                        </div>
+                    </div>
+                    }
+                </div>
+                <div class="relative z-0 w-full mb-5 group">
+                    <input formControlName="phone" type="tel" id="floating_phone"
+                        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-green-600 dark:focus:border-green-600 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+                        placeholder=" " required />
+                    <label for="floating_phone"
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-600 peer-focus:dark:text-green-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">phone
+                    </label>
+                    @if ( registerForm.get('phone')?.errors && registerForm.get('phone')?.touched ){
+                    <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 " role="alert">
+                        <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                        </svg>
+                        <span class="sr-only">Danger</span>
+                        <div>
+                            <span class="font-medium">Ensure that these requirements are met:</span>
+                            <ul class="mt-1.5 list-disc list-inside">
+                                @if ( registerForm.get('phone')?.getError("required") ){
+                                <li>phone is required.</li>
+                                }
+                                @else if (registerForm.get('phone')?.getError("pattern")) {
+                                <li>Enter a valid Egyptian phone number</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    }
+                </div>
+                <button [disabled]="registerForm.invalid" [disabled]="isLoading" type="submit"
+                    class="  w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition disabled:bg-gray-700">Sign
+                    Up
+                    @if (isLoading) {
+                    <span><i class="fas fa-spin fa-spinner"></i></span>
+                    }
+                </button>
+                @if (msgError) {
+                <P class="bg-red-300 text-white px-2 py-3 border rounded-sm mt-1"> {{msgError}} </P>
+                }
+                @if (isSuccess) {
+                <P class="bg-green-600 text-white px-2 py-3 border rounded-sm mt-1"> {{isSuccess}} </P>
+                }
+            </form>
+        </div>
+    </div>
+</section>
