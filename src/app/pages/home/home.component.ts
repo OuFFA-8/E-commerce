@@ -6,6 +6,7 @@ import { Icategories } from '../../shared/interfaces/icategories';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
 import { CartService } from '../../core/services/cart/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
   private readonly productsService = inject(ProductsService);
   private readonly CategoriesService = inject(CategoriesService);
   private readonly cartService = inject(CartService);
+  private readonly toastrService = inject(ToastrService);
 
   Products: Iproduct [] = [] ;
   Categories: Icategories[] = [];
@@ -102,7 +104,7 @@ export class HomeComponent implements OnInit {
     this.cartService.addProductToCart(id).subscribe({
       next: (res) => {
         console.log(res.data);
-        
+        this.toastrService.success(res.message , 'Fresh Cart');
       },
       error: (err) => {
         console.log(err);

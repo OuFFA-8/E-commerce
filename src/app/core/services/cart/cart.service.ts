@@ -58,16 +58,10 @@ export class CartService {
 
   }
   clearCart(): Observable<any> {
-
-    return this.httpClient.delete(`https://ecommerce.routemisr.com/api/v1/cart`,
+    return this.httpClient.delete('https://ecommerce.routemisr.com/api/v1/cart',
       {
         headers: { token: this.myToken }
       }
-
     );
-
   }
-
-
-
 }
