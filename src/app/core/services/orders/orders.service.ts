@@ -12,9 +12,10 @@ export class OrdersService {
 
 
     checkoutPayment(id:string ,data:object):Observable<any>{
-      return this.httpClient.post(
-        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${id}?url=${encodeURIComponent(window.location.origin)}`, 
-        { shippingAddress: data }
-      );
+      return this.httpClient.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${id}?${window.location.origin}`, 
+        {
+          "shippingAddress": data
+      },
+      )
     }
 }
